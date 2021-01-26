@@ -44,7 +44,6 @@ export default Vue.extend({
    };
   },
   mounted() {
-    window.vm = this;
   }
 })
 </script>
