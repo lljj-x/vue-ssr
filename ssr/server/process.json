@@ -1,0 +1,21 @@
+{
+  "apps" : [{
+    "name" : "ssr-test",
+    "args" : "-p 9999",
+    "node_args": ["--inspect"],
+    "script"      : "index.js",
+    "watch": [
+      "./*.js",
+      "./*.html",
+      "../dist/**"
+    ],
+    "ignore_watch" : ["node_modules","views","logs","test"],
+    "env": {
+      "NODE_ENV": "dev"
+    },
+    "env_production" : {
+       "NODE_ENV": "prd"
+    }
+  }]
+}
+

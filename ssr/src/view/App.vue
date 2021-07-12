@@ -1,19 +1,18 @@
 <template>
-  <div class="app">
-    <h2>View App</h2>
-    <div>
-      Please heiheihei ...
-      <div>
-        <router-view></router-view>
-      </div>
+    <div
+        id="app"
+        class="app"
+    >
+        <div>
+            <router-view></router-view>
+        </div>
     </div>
-  </div>
 </template>
 
 <script>
 export default {
-  name: "App"
-}
+    name: 'App'
+};
 </script>
 
 <style scoped>

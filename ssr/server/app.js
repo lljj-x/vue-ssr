@@ -5,6 +5,6 @@ exports.createApp = function createApp(context) {
         data: {
             url: context.url,
         },
-        template: `<div id="app">Current url: {{ url }}</div>`
-    })
-}
+        template: '<div id="app">Current url: {{ url }}</div>'
+    });
+};

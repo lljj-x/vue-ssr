@@ -4,7 +4,13 @@
   "description": "vue ssr test",
   "main": "server/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "build2": "npm run build && npm run build --target=node",
+    "watch-client": "npm run build --watch",
+    "watch-server": "npm run build --target=node --watch",
+    "lint": "vue-cli-service lint"
   },
   "author": "",
   "license": "ISC",
@@ -12,6 +18,31 @@
     "express": "^4.17.1",
     "vue": "^2.6.12",
     "vue-router": "^3.4.9",
-    "vue-server-renderer": "^2.6.12"
+    "vuex": "^3.6.2",
+    "webpack-node-externals": "^3.0.0"
+  },
+  "devDependencies": {
+    "@lljj/babel-preset-app": "^0.0.1",
+    "@lljj/eslint-config": "0.1.0",
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-plugin-eslint": "~4.5.0",
+    "@vue/cli-service": "~4.5.0",
+    "babel-eslint": "^10.0.3",
+    "copy-webpack-plugin": "^5.0.4",
+    "eslint": "^5.16.0",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-vue": "^5.0.0",
+    "markdown-it-task-lists": "^2.1.1",
+    "postcss-color-mod-function": "^3.0.3",
+    "postcss-cssnext": "^3.1.0",
+    "postcss-import": "^12.0.1",
+    "postcss-mixins": "^6.2.0",
+    "postcss-nested": "^4.1.0",
+    "vue-server-renderer": "^2.6.12",
+    "vue-template-compiler": "^2.6.10",
+    "watchpack": "^1.6.1",
+    "webpack-bundle-analyzer": "^3.6.0",
+    "webpack-manifest-plugin": "^2.2.0",
+    "yargs": "^6.6.0"
   }
 }

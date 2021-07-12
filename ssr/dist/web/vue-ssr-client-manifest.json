@@ -1,0 +1,28 @@
+{
+  "publicPath": "/",
+  "all": [
+    "entryClient.html",
+    "static/js/entryClient.js"
+  ],
+  "initial": [
+    "static/js/entryClient.js"
+  ],
+  "async": [],
+  "modules": {
+    "54827943": [
+      1
+    ],
+    "6b383f82": [
+      1
+    ],
+    "6f5e7552": [
+      1
+    ],
+    "5cb9385c": [
+      1
+    ],
+    "9a7a1126": [
+      1
+    ]
+  }
+}

@@ -1,23 +1,44 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+import { createStore } from './store';
+
 import App from './view/App';
+
+import Home from './view/components/Home.vue';
+import Detail from './view/components/Detail.vue';
 
 Vue.use(Router);
 
-exports.createApp = function createApp(context) {
+export function createApp() {
+    // router
     const router = new Router({
-        mode: "history",
+        mode: 'history',
         routes: [{
+            name: 'home',
             path: '/',
-            component: () => import('./view/components/Home.vue')
-        },{
-            path: '/detail/:id',
-            component: () => import('./view/components/Detail.vue')
+            // component: () => import('./view/components/Home.vue')
+            component: Home
+
+        }, {
+            name: 'detail',
+            path: '/detail/:id?',
+            // component: () => import('./view/components/Detail.vue')
+            component: Detail
         }]
     });
 
-    return new Vue({
+    // store
+    const store = createStore();
+
+    const app = new Vue({
         render: h => h(App),
+        store,
         router
     });
+
+    return {
+        app,
+        router,
+        store
+    };
 }
