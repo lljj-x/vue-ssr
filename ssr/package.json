@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "build": "vue-cli-service build --no-clean",
     "build2": "npm run build && npm run build --target=node",
     "watch-client": "npm run build --watch",
     "watch-server": "npm run build --target=node --watch",

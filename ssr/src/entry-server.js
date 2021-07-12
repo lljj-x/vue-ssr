@@ -1,6 +1,6 @@
 import { createApp } from './app';
 
-exports.serverApp = context => new Promise((resolve, reject) => {
+export default context => new Promise((resolve, reject) => {
     const { app, router, store } = createApp();
 
     // 设置服务器端 router 的位置

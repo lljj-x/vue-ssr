@@ -1,7 +1,6 @@
 {
-  "publicPath": "/",
+  "publicPath": "/dist/",
   "all": [
-    "entryClient.html",
     "static/js/entryClient.js"
   ],
   "initial": [
@@ -10,19 +9,19 @@
   "async": [],
   "modules": {
     "54827943": [
-      1
+      0
     ],
     "6b383f82": [
-      1
+      0
     ],
     "6f5e7552": [
-      1
+      0
     ],
     "5cb9385c": [
-      1
+      0
     ],
     "9a7a1126": [
-      1
+      0
     ]
   }
 }

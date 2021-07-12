@@ -3,11 +3,10 @@
     "name" : "ssr-test",
     "args" : "-p 9999",
     "node_args": ["--inspect"],
-    "script"      : "index.js",
+    "script"      : "server.js",
     "watch": [
-      "./*.js",
-      "./*.html",
-      "../dist/**"
+      "./server.js",
+      "./dist/**"
     ],
     "ignore_watch" : ["node_modules","views","logs","test"],
     "env": {

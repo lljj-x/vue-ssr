@@ -44,11 +44,11 @@ log({
 const isProduction = process.env.NODE_ENV === 'production';
 
 // config var
-const outputDir = path.resolve(__dirname, `./dist/${target}`);
+const outputDir = path.resolve(__dirname, './dist');
 
 module.exports = {
     // cdn
-    publicPath: isProduction ? '/' : '/',
+    publicPath: isProduction ? '/dist' : '/',
 
     // 资源目录
     outputDir,
