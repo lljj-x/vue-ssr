@@ -2,20 +2,21 @@
     <div>
         <h1>Home</h1>
         <button @click="toHome">去首页</button>
-        <pre>
-        {{ JSON.stringify($data, null, 2) }}
-      </pre>
+        <div class="img-wrapper">
+            <img
+                src="https://img.alicdn.com/tfs/TB1vYlkdnZmx1VjSZFGXXax2XXa-468-644.jpg_320x5000q100.jpg_.webp"
+                alt=""
+            >
+        </div>
     </div>
 </template>
 
 <script>
 export default {
     name: 'Detail',
-    data() {
-        return {
-            // eslint-disable-next-line no-underscore-dangle
-            ...typeof window === 'object' ? window.__INITIAL_STATE__ : {}
-        };
+    mounted() {
+        console.log(11);
+        this.$forceUpdate();
     },
     methods: {
         toHome() {

@@ -1,7 +1,7 @@
 <template>
   <div class="nuxt-box">
     <h2 style="text-align: center;">Test Layout</h2>
-    <Nuxt />
+    <AsyncWrapper />
   </div>
 </template>
 
@@ -61,3 +61,20 @@ html {
   background-color: #35495e;
 }
 </style>
+
+<script>
+const AsyncWrapper = () => import(
+  /* webpackChunkName: "my-chunk-name" */
+  /* webpackMode: "lazy" */
+  './async-wrapper'
+  );
+
+export default {
+  components: {
+    AsyncWrapper
+  },
+  mounted() {
+    this.$forceUpdate()
+  }
+}
+</script>
