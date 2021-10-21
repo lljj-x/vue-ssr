@@ -1,12 +1,13 @@
 <template>
   <div class="container">
-    <h1>First App</h1>
+    <h2>{{ title }}</h2>
     <div class="content">
-      <div class="asset-box" style="margin-top: 20px;">
+      <div v-if="false" class="asset-box" style="margin-top: 20px;">
         <img src="@/assets/png.png" alt="" style="max-width: 200px; height: auto;">
       </div>
       <div class="static-box" style="margin-top: 20px;">
         <img src="/static.png" alt="" style="max-width: 200px; height: auto;">
+        <child-img></child-img>
       </div>
     </div>
   </div>
@@ -14,23 +15,17 @@
 
 <script lang="ts">
 import Vue from 'vue'
+const ChildImg = () => import('@/components/Img')
 
 export default Vue.extend({
   layout: 'test',
-  middleware: 'auth',
-  // fetch() {
-  //   return new Promise((resolve, reject) => {
-  //     setTimeout(() => {
-  //       console.log('fetch');
-  //       resolve();
-  //     }, 3000);
-  //   });
-  // },
+  components: {
+    ChildImg
+  },
   asyncData(context) {
     return new Promise((resolve) => {
-      console.log('async data');
       resolve({
-        title: 'This is test page',
+        title: 'Test page',
         subTitle: 'This is subtitle'
       });
     });
@@ -44,6 +39,7 @@ export default Vue.extend({
    };
   },
   mounted() {
+    this.$forceUpdate()
   }
 })
 </script>
@@ -51,7 +47,7 @@ export default Vue.extend({
 <style>
 .container {
   margin: 0 auto;
-  min-height: 100vh;
+  min-height: 400px;
   display: flex;
   flex-direction: column;
   justify-content: center;
