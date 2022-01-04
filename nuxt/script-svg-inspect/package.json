@@ -1,0 +1,25 @@
+{
+  "name": "@klook/svg-inspect-babel-plugin",
+  "version": "0.0.1",
+  "description": "svg inspector",
+  "main": "./src/index.js",
+  "scripts": {
+    "build": "echo success!",
+    "lint": "eslint .",
+    "test": "jest"
+  },
+  "keywords": [
+    "location",
+    "babel",
+    "plugin"
+  ],
+  "files": [
+    "src/index.js"
+  ],
+  "license": "ISC",
+  "dependencies": {
+    "glob": "^7.2.0",
+    "p-map": "4.0.0",
+    "source-map": "^0.7.3"
+  }
+}

@@ -15,7 +15,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-const ChildImg = () => import('@/components/Img')
+const ChildImg = () => import('@/components/Img.vue')
 
 export default Vue.extend({
   layout: 'test',

@@ -5,6 +5,9 @@
       <h1 class="title">
         firstApp
       </h1>
+      <div class="" v-for="item in xx">
+        {{ item }}
+      </div>
       <div class="links">
         <a
           href="https://nuxtjs.org/"
@@ -27,10 +30,26 @@
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import Vue from 'vue'
 
-export default Vue.extend({})
+export default Vue.extend({
+  data() {
+      return {
+        xxx: 'aa111'
+      }
+  },
+  mounted() {
+    // window.n("svg-icon", {
+    //   staticClass: "banner-search_icon",
+    //   attrs: {
+    //     name: this.name,
+    //     size: "24"
+    //   }
+    // })
+    console.log('11')
+  }
+})
 </script>
 
 <style>
