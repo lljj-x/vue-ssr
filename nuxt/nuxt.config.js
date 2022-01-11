@@ -1,3 +1,29 @@
+
+class MyExampleWebpackPlugin {
+  constructor(opts) {
+    this.opts = Object.assign({
+      filter: () => true,
+      ...opts
+    })
+  }
+  apply(compiler) {
+    // 指定要附加到的事件钩子函数
+    const filterFn = this.opts.filter
+
+    compiler.hooks.emit.tapAsync(
+      'MyExampleWebpackPlugin',
+      (compilation, callback) => {
+        const statsModules = compilation.getStats().toJson().modules
+        const sourceModule = statsModules.filter(({ name }) => {
+          return filterFn(name)
+        })
+        const names = sourceModule.map(item => item.name.replace(/&|\s|\?|\+.*/g, ''))
+        debugger
+      }
+    );
+  }
+}
+
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -50,6 +76,13 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+    plugins: [
+      new MyExampleWebpackPlugin({
+        filter(name) {
+          return !(name.includes('node_modules') || name.includes('.nuxt') || name.includes('(webpack)'))
+        }
+      })
+    ],
     extend(config, ctx) {
       if (ctx.isDev) {
         config.devtool = ctx.isClient ? 'source-map' : 'inline-source-map'
