@@ -1,24 +1,37 @@
+const path = require('path')
+const fs = require('fs')
 
-class MyExampleWebpackPlugin {
+class ExportWebpackPlugin {
   constructor(opts) {
     this.opts = Object.assign({
       filter: () => true,
+      dirName: 'webpack-source-files',
       ...opts
     })
   }
   apply(compiler) {
+    this.compiler = compiler;
+
     // 指定要附加到的事件钩子函数
     const filterFn = this.opts.filter
+    const exportFilepath = path.resolve(this.compiler.outputPath, this.opts.dirName)
+    const cwdDir = process.cwd()
 
-    compiler.hooks.emit.tapAsync(
+    compiler.hooks.done.tapAsync(
       'MyExampleWebpackPlugin',
-      (compilation, callback) => {
-        const statsModules = compilation.getStats().toJson().modules
+      (stats, callback) => {
+        const statsModules = stats.toJson().modules
         const sourceModule = statsModules.filter(({ name }) => {
           return filterFn(name)
         })
-        const names = sourceModule.map(item => item.name.replace(/&|\s|\?|\+.*/g, ''))
-        debugger
+
+        const names = new Set(sourceModule.map(item => item.name.replace(/[\s\?].*/g, '')))
+
+        for (const fileName of names) {
+          fs.copyFileSync(path.resolve(cwdDir, fileName), exportFilepath)
+        }
+
+        callback()
       }
     );
   }
@@ -77,7 +90,7 @@ export default {
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
     plugins: [
-      new MyExampleWebpackPlugin({
+      new ExportWebpackPlugin({
         filter(name) {
           return !(name.includes('node_modules') || name.includes('.nuxt') || name.includes('(webpack)'))
         }
