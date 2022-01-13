@@ -1,7 +1,4 @@
-const path = require('path')
-const fs = require('fs')
-
-class ExportWebpackPlugin {
+class ExportSourceFilesPlugin {
   constructor(opts) {
     this.opts = Object.assign({
       filter: () => true,
@@ -14,11 +11,11 @@ class ExportWebpackPlugin {
 
     // 指定要附加到的事件钩子函数
     const filterFn = this.opts.filter
-    const exportFilepath = path.resolve(this.compiler.outputPath, this.opts.dirName)
+    const exportFilepath = path.resolve(this.compiler.options.output.path, this.opts.dirName)
     const cwdDir = process.cwd()
 
     compiler.hooks.done.tapAsync(
-      'MyExampleWebpackPlugin',
+      'ExportSourceFilesWebpackPlugin',
       (stats, callback) => {
         const statsModules = stats.toJson().modules
         const sourceModule = statsModules.filter(({ name }) => {
@@ -28,7 +25,12 @@ class ExportWebpackPlugin {
         const names = new Set(sourceModule.map(item => item.name.replace(/[\s\?].*/g, '')))
 
         for (const fileName of names) {
-          fs.copyFileSync(path.resolve(cwdDir, fileName), exportFilepath)
+          const fromFile = path.resolve(cwdDir, fileName)
+          if (fs.pathExistsSync(fromFile)) {
+            fs.copySync(fromFile, path.resolve(exportFilepath, fileName))
+          } else {
+            console.warn('[webpack-source-files]: File does not exist, copy fail !', fileName)
+          }
         }
 
         callback()
@@ -89,16 +91,20 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-    plugins: [
-      new ExportWebpackPlugin({
-        filter(name) {
-          return !(name.includes('node_modules') || name.includes('.nuxt') || name.includes('(webpack)'))
-        }
-      })
-    ],
     extend(config, ctx) {
       if (ctx.isDev) {
         config.devtool = ctx.isClient ? 'source-map' : 'inline-source-map'
+      }
+
+      if (ctx.isClient) {
+        config.plugins.push(
+          new ExportSourceFilesPlugin({
+            dirName: 'webpack-source-files',
+            filter(name) {
+              return !['node_modules', '.nuxt', '(webpack)'].some(item => name.includes(item))
+            }
+          })
+        )
       }
 
       if (!ctx.isDev && ctx.isClient) {

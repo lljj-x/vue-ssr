@@ -40,6 +40,7 @@ export default Vue.extend({
       }
   },
   mounted() {
+    debugger
     // window.n("svg-icon", {
     //   staticClass: "banner-search_icon",
     //   attrs: {
@@ -47,7 +48,7 @@ export default Vue.extend({
     //     size: "24"
     //   }
     // })
-    console.log('11')
+    console.log('11222')
   }
 })
 </script>
