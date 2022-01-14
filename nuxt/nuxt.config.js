@@ -1,3 +1,7 @@
+const path = require('path')
+const fs = require('fs-extra')
+
+
 class ExportSourceFilesPlugin {
   constructor(opts) {
     this.opts = Object.assign({
